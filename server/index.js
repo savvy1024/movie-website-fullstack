@@ -6,10 +6,12 @@ import http from "http"
 import mongoose from "mongoose"
 import "dotenv/config"
 
-const index = () => {
-  return (
-    <div>index</div>
-  )
-}
+const app = express()
 
-export default index
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+
+const port=precess.env.PORT || 5000
+
