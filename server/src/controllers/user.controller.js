@@ -37,11 +37,11 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
     try{
-        const {username, password} = req.body;  
+        const {username, password} = req.body;
         const user = await userModel.findOne({username}).select("username password salt id displayName");
         if(!user) return responseHandler.badrequest(res, "user not found");
         if(!user.verifyPassword(password)) return responseHandler.badrequest(res, "invalid password");
-        
+
         const token = jsonwebtoken.sign(
             {data:user.id},
             process.env.TOKEN_SECRET,
