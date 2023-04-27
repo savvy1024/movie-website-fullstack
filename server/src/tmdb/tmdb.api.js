@@ -1,5 +1,5 @@
-import axiosClient from "../axois/axios.client";
-import tmdbEndpoints from "./tmdb.endpoints";
+import axiosClient from "../axois/axios.client.js";
+import tmdbEndpoints from "./tmdb.endpoints.js";
 
 const tmdbApi = {
   mediaList: async ({ mediaType, mediaCategory, page }) =>

@@ -1,5 +1,5 @@
-import responseHandler from "../middlewares/response.handler";
-import reviewModel from "../models/review.model.js";
+import responseHandler from '../handlers/response.handler.js';
+import reviewModel from '../models/review.model.js';
 
 const create = async (req, res) => {
   try {
@@ -41,13 +41,13 @@ const remove = async (req, res) => {
   }
 };
 
-const getReviews = async (req, res) => {
+const getReviewsOfUser = async (req, res) => {
   try {
     const reviews = await reviewModel
       .find({
         user: req.user.id,
       })
-      .sort("-createdAt");
+      .sort('-createdAt');
 
     responseHandler.ok(res, reviews);
   } catch {
@@ -58,5 +58,5 @@ const getReviews = async (req, res) => {
 export default {
   create,
   remove,
-  getReviews,
+  getReviewsOfUser,
 };

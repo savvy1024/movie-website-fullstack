@@ -1,6 +1,6 @@
-import userModel from "../models/user.model";
+import userModel from "../models/user.model.js";
 import jsonwebtoken from "jsonwebtoken";
-import responseHandler from "../middlewares/response.handler";
+import responseHandler from "../handlers/response.handler.js";
 
 const signup = async (req, res) => {
     
@@ -65,7 +65,7 @@ const updatePassword = async (req, res) => {
 try{
     const {password, newPassword} = req.body;
 
-    const user = await userModel.findById(req.user.id).select("password id salt")；
+    const user = await userModel.findById(req.user.id).select("password id salt");
     if(!user) return responseHandler.unauthorize(res);
     if(!user.verifyPassword(password)) return responseHandler.badrequest(res, "invalid password");
     user.setPassword(newPassword);
